@@ -40,6 +40,7 @@ h1 small{display:block;font-family:Rajdhani,sans-serif;font-weight:700;font-size
 #pill{font-family:Bungee,sans-serif;font-size:.8rem;letter-spacing:1px;padding:5px 18px}
 #pill.p0{background:linear-gradient(135deg,#2a8cff,#0b4a9c);box-shadow:0 0 16px #2a8cff99}
 #pill.p1{background:linear-gradient(135deg,#ffa24a,#c8501a);box-shadow:0 0 16px #ff8a3a99}
+#skillStatus{max-width:480px}
 #msg{background:var(--card);border-left:5px solid var(--btn);border-radius:10px;padding:8px 14px;width:100%;max-width:480px;box-sizing:border-box;text-align:left;font-size:1.05rem;font-weight:700;box-shadow:0 4px 12px #0003}
 canvas{border:7px solid;border-image:linear-gradient(135deg,#f6dd9a,#9a7330 40%,#f6dd9a 60%,#8a6320) 1;border-radius:0;box-sizing:border-box;box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 0 2px #3b2a0f}
 .chip{font-weight:700;font-size:.85rem;backdrop-filter:blur(4px)}
@@ -81,9 +82,9 @@ button:disabled{opacity:.5}
 @media(min-width:900px) and (orientation:landscape){
 body{display:grid;grid-template-columns:min(calc(100vh - 40px),780px) 420px;grid-template-rows:repeat(6,auto) 1fr;column-gap:36px;row-gap:12px;justify-content:center;align-content:center;align-items:start;min-height:100vh}
 canvas{grid-column:1;grid-row:1/-1;width:100%;max-width:none}
-h1,#pill,#msg,#fleet,#eq,small,.row{grid-column:2}
+h1,#pill,#msg,#skillStatus,#fleet,#eq,small,.row{grid-column:2}
 h1,#pill{justify-self:center}
-#msg,#eq,#fleet,small{max-width:none}
+#msg,#skillStatus,#eq,#fleet,small{max-width:none}
 #fleet{justify-content:flex-start}
 #eq{font-size:1.3rem}
 }
@@ -108,19 +109,26 @@ body{width:100%;min-height:100svh;min-height:100dvh;overflow-x:hidden}
 canvas#c{display:block;width:100%;max-width:640px;height:auto;aspect-ratio:1}
 .ovc{height:100%;min-height:100%;overflow-y:auto;justify-content:flex-start;gap:clamp(12px,3vh,24px);padding:clamp(16px,5vh,44px) clamp(16px,5vw,28px) calc(16px + env(safe-area-inset-bottom,0px))}
 #credit{margin-top:auto;padding-top:12px;color:#cfe8ff;font-size:.85rem;text-align:center;opacity:.85}
+#modePick{background:linear-gradient(180deg,#5a6b7a,#37444f);border-bottom-color:#1c252d}
+#ov.skillveil{background:rgba(4,9,22,.74);backdrop-filter:blur(2px)}
+#nm .skillform{width:min(100%,360px);display:flex;flex-direction:column;gap:10px;color:#eaf6ff;text-align:left;font-weight:700}
+.skillform input{width:100%;box-sizing:border-box;font:inherit;padding:10px;border:2px solid #2fd0ff;border-radius:8px;background:#0e2536;color:#fff}
+.skillform .skillrow{display:flex;gap:8px;justify-content:center}
+.skillform .skillrow button{flex:1;padding:10px 6px;font-size:.72rem}
+#skillStatus{font-size:.9rem;color:#9fe6ff;text-align:center;min-height:1.2em}
 #cpuLevelWrap{display:flex;flex-direction:column;gap:4px;width:100%;color:#eaf6ff;text-align:left;font-weight:700}
 #cpuLevel{width:100%;padding:10px;border:2px solid #2fd0ff;border-radius:10px;background:#0e2536;color:#fff;font:inherit}
 @media (min-width:700px) and (max-width:899px) and (orientation:landscape){
- body{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,42vw);grid-template-rows:repeat(7,auto);column-gap:clamp(12px,2vw,20px);row-gap:10px;justify-content:center;align-content:center;align-items:start;min-height:100dvh;padding:12px}
- canvas#c{grid-column:1;grid-row:1 / span 7;max-width:none;width:100%;align-self:center}
- h1,#pill,#msg,#fleet,#eq,small,.row{grid-column:2}
- h1,#pill{justify-self:center}#msg,#eq,#fleet,small{max-width:none}#fleet{justify-content:flex-start}
+ body{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,42vw);grid-template-rows:repeat(8,auto);column-gap:clamp(12px,2vw,20px);row-gap:10px;justify-content:center;align-content:center;align-items:start;min-height:100dvh;padding:12px}
+ canvas#c{grid-column:1;grid-row:1 / span 8;max-width:none;width:100%;align-self:center}
+ h1,#pill,#msg,#skillStatus,#fleet,#eq,small,.row{grid-column:2}
+ h1,#pill{justify-self:center}#msg,#skillStatus,#eq,#fleet,small{max-width:none}#fleet{justify-content:flex-start}
 }
 @media (min-width:900px) and (orientation:landscape){
- body{display:grid;grid-template-columns:minmax(0,min(50vw,78vh,760px)) minmax(260px,min(380px,42vw));grid-template-rows:repeat(7,auto);column-gap:clamp(12px,2vw,32px);row-gap:12px;justify-content:center;align-content:center;align-items:start;min-height:100dvh;padding:12px}
- canvas#c{grid-column:1;grid-row:1 / span 7;width:100%;max-width:none;align-self:center}
- h1,#pill,#msg,#fleet,#eq,small,.row{grid-column:2}
- h1,#pill{justify-self:center}#msg,#eq,#fleet,small{max-width:none}#fleet{justify-content:flex-start}
+ body{display:grid;grid-template-columns:minmax(0,min(50vw,78vh,760px)) minmax(260px,min(380px,42vw));grid-template-rows:repeat(8,auto);column-gap:clamp(12px,2vw,32px);row-gap:12px;justify-content:center;align-content:center;align-items:start;min-height:100dvh;padding:12px}
+ canvas#c{grid-column:1;grid-row:1 / span 8;width:100%;max-width:none;align-self:center}
+ h1,#pill,#msg,#skillStatus,#fleet,#eq,small,.row{grid-column:2}
+ h1,#pill{justify-self:center}#msg,#skillStatus,#eq,#fleet,small{max-width:none}#fleet{justify-content:flex-start}
 }
 @media (max-width:360px){
  body{padding:8px;gap:8px}h1{font-size:1.35rem}#eq{padding-left:8px;padding-right:8px;gap:4px}#eq input{width:2.25em}
@@ -129,14 +137,14 @@ canvas#c{display:block;width:100%;max-width:640px;height:auto;aspect-ratio:1}
 <button id="snd" aria-label="Som">🔊</button>
 <h1>⚓ CÔNICA NAVAL<small>BATTLESHIP</small></h1>
 <span id="pill"></span>
-<div id="msg"></div>
+<div id="msg"></div><div id="skillStatus"></div>
 <canvas id="c" width="860" height="860"></canvas>
 <div id="fleet"></div>
 <div id="eq"></div>
 <small>Em (x−a), o centro fica em x = a. Ex.: centro em x = 7 → digite 7; centro em x = −3 → digite −3. Aceita decimais (3,5).</small>
 <div id="win" class="hide"><svg class="scene" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="wk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#150b25"/><stop offset=".5" stop-color="#7a2c4e"/><stop offset="1" stop-color="#ff9248"/></linearGradient><linearGradient id="ws" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a2f58"/><stop offset=".4" stop-color="#2a1b44"/><stop offset="1" stop-color="#07060f"/></linearGradient><radialGradient id="wf"><stop offset="0" stop-color="#ffd27a"/><stop offset=".35" stop-color="#ff7a2a99"/><stop offset="1" stop-color="#ff4a1a00"/></radialGradient></defs><rect x="-3000" width="6400" height="482" fill="url(#wk)"/><circle cx="90" cy="482" r="62" fill="#ffc46b"/><rect x="-3000" y="480" width="6400" height="320" fill="url(#ws)"/><circle class="tw" cx="305" cy="455" r="130" fill="url(#wf)"/><g stroke="#ff9a4a" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"><path d="M270 500h70M280 520h50M288 542h34M294 566h20"/></g><g transform="rotate(-9 300 486)"><path fill="#0a0710" d="M226 486L248 466H290L296 452H308V438H314V452H330L333 428H339V452H356L366 466H378L386 486Z"/><path class="fl" fill="#ff7a1a" d="M286 466q-12-26 2-44q3 18 14 10q10 16-4 34z"/><path class="fl" fill="#ffd25a" d="M292 466q-5-14 1-24q3 9 8 5q4 10-2 19z"/><path class="fl" fill="#ff6a1a" d="M340 462q-10-24 3-40q2 16 12 9q8 14-3 31z"/></g><g fill="#1a1420"><circle class="sm" cx="300" cy="430" r="12"/><circle class="sm" cx="300" cy="430" r="10" style="animation-delay:1.3s"/><circle class="sm" cx="345" cy="420" r="12" style="animation-delay:.7s"/><circle class="sm" cx="345" cy="420" r="9" style="animation-delay:2s"/></g><g transform="translate(0,640)"><use class="wv" href="#w" fill="#120b24" fill-opacity=".8"/></g><path d="M-2000 706H2400M-2000 734H2400M30 706V770M210 706V770M370 706V770" stroke="#0c0710" stroke-width="5"/><g class="bob" style="animation-duration:5s"><g fill="#04050b" stroke="#ff9a4a" stroke-opacity=".55" stroke-width="1.2"><path d="M92 612Q140 592 188 612L200 700L214 750L172 736L140 750L108 736L66 750L80 700Z"/><circle cx="140" cy="572" r="21"/><path d="M112 558Q140 518 168 558Z"/><ellipse cx="140" cy="558" rx="31" ry="6"/><rect x="116" y="745" width="18" height="32" rx="4"/><rect x="146" y="745" width="18" height="32" rx="4"/></g><path d="M98 620Q76 655 128 670M182 620Q204 655 152 670" fill="none" stroke="#04050b" stroke-width="16" stroke-linecap="round"/><g fill="#d9a93c"><ellipse cx="97" cy="614" rx="14" ry="5.5"/><ellipse cx="183" cy="614" rx="14" ry="5.5"/><rect x="113" y="549" width="54" height="3"/></g><circle cx="140" cy="668" r="9" fill="#1a1020"/></g><rect x="-2000" y="768" width="4400" height="40" fill="#0c0710"/></svg><div class="ovc"><div class="logo"><b id="wn">NOME</b><b class="wins">WINS</b></div><button id="again">🔁 Nova partida</button></div></div>
-<div class="row"><button id="rot">↔ Horizontal</button><button id="mine" class="hide">👁 Minha frota</button><button id="ok">Confirmar</button></div>
-<div id="ov"><svg class="scene" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#040916"/><stop offset=".55" stop-color="#1a2d6b"/><stop offset="1" stop-color="#f08a5d"/></linearGradient><linearGradient id="sa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a4f9a"/><stop offset="1" stop-color="#030812"/></linearGradient><radialGradient id="mn"><stop offset="0" stop-color="#fff6d0"/><stop offset=".4" stop-color="#ffe9a8aa"/><stop offset="1" stop-color="#ffe9a800"/></radialGradient><path id="w" d="M-200,0q50,-22 100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0V300H-200Z"/></defs><rect x="-3000" width="6400" height="482" fill="url(#sk)"/><rect x="-3000" y="480" width="6400" height="320" fill="url(#sa)"/><g fill="#fff"><circle class="tw" cx="40" cy="60" r="1.6"/><circle class="tw" cx="120" cy="140" r="1.2" style="animation-delay:.6s"/><circle class="tw" cx="210" cy="50" r="1.8" style="animation-delay:1.1s"/><circle class="tw" cx="340" cy="90" r="1.4" style="animation-delay:.3s"/><circle class="tw" cx="70" cy="250" r="1.3" style="animation-delay:1.7s"/><circle class="tw" cx="370" cy="230" r="1.5" style="animation-delay:.9s"/></g><circle cx="285" cy="340" r="120" fill="url(#mn)"/><circle cx="285" cy="340" r="36" fill="#fff0b8"/><circle class="dash" cx="285" cy="340" r="54" fill="none" stroke="#ff5a3c" stroke-width="2.5" stroke-dasharray="7 7"/><g stroke="#ffe9a8" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"><path d="M245 500h80M258 522h54M270 546h30M278 574h14"/></g><g class="bob"><path fill="#070d1e" d="M30 488L62 468H108L114 456H128V446H134V456H150L152 438H158V456H192L198 468H232L254 488Z"/><path stroke="#070d1e" stroke-width="2" d="M141 446V418M150 428h-18"/><ellipse class="dash" cx="142" cy="470" rx="122" ry="30" fill="none" stroke="#2fd0ff" stroke-width="2.2" stroke-dasharray="10 8"/></g><g transform="translate(0,600)"><use class="wv" href="#w" fill="#1e4a8a" fill-opacity=".55"/></g><g font-family="Cambria Math,STIX Two Math,Georgia,serif" font-style="italic" font-size="15" fill="#9fe6ff" fill-opacity=".6" text-anchor="middle"><text x="200" y="625">(x+3)² + (y−2)² = 1</text><text x="200" y="648">x²/6,25 + y²/0,25 = 1</text></g><g transform="translate(0,655)"><use class="wv r" href="#w" fill="#0b2a5c" fill-opacity=".8"/></g><g transform="translate(0,725)"><use class="wv" href="#w" fill="#040b1a"/></g></svg><div class="ovc"><div class="logo"><b>CÔNICA<br>NAVAL</b><i>BATTLESHIP</i></div><div class="card"><h2 id="ovt">Duelo de equações</h2><p id="ovp"></p><button id="backNames" class="lb hide">← Voltar</button><div id="nm" class="hide"><input id="n1" maxlength="14" placeholder="Capitão 1" autocomplete="off"><input id="n2" maxlength="14" placeholder="Capitão 2" autocomplete="off"><label id="cpuLevelWrap" class="hide" for="cpuLevel">Dificuldade<select id="cpuLevel"><option value="easy">Fácil</option><option value="normal" selected>Normal</option><option value="hard">Difícil</option></select></label></div><button id="ovb">👥 2 jogadores</button><button id="ovc">🤖 Contra o computador</button><button id="learn">📚 Aprender</button></div>
+<div class="row"><button id="skill" class="hide">⚡ Habilidades</button><button id="rot">↔ Horizontal</button><button id="mine" class="hide">👁 Minha frota</button><button id="ok">Confirmar</button></div>
+<div id="ov"><svg class="scene" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#040916"/><stop offset=".55" stop-color="#1a2d6b"/><stop offset="1" stop-color="#f08a5d"/></linearGradient><linearGradient id="sa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a4f9a"/><stop offset="1" stop-color="#030812"/></linearGradient><radialGradient id="mn"><stop offset="0" stop-color="#fff6d0"/><stop offset=".4" stop-color="#ffe9a8aa"/><stop offset="1" stop-color="#ffe9a800"/></radialGradient><path id="w" d="M-200,0q50,-22 100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0V300H-200Z"/></defs><rect x="-3000" width="6400" height="482" fill="url(#sk)"/><rect x="-3000" y="480" width="6400" height="320" fill="url(#sa)"/><g fill="#fff"><circle class="tw" cx="40" cy="60" r="1.6"/><circle class="tw" cx="120" cy="140" r="1.2" style="animation-delay:.6s"/><circle class="tw" cx="210" cy="50" r="1.8" style="animation-delay:1.1s"/><circle class="tw" cx="340" cy="90" r="1.4" style="animation-delay:.3s"/><circle class="tw" cx="70" cy="250" r="1.3" style="animation-delay:1.7s"/><circle class="tw" cx="370" cy="230" r="1.5" style="animation-delay:.9s"/></g><circle cx="285" cy="340" r="120" fill="url(#mn)"/><circle cx="285" cy="340" r="36" fill="#fff0b8"/><circle class="dash" cx="285" cy="340" r="54" fill="none" stroke="#ff5a3c" stroke-width="2.5" stroke-dasharray="7 7"/><g stroke="#ffe9a8" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"><path d="M245 500h80M258 522h54M270 546h30M278 574h14"/></g><g class="bob"><path fill="#070d1e" d="M30 488L62 468H108L114 456H128V446H134V456H150L152 438H158V456H192L198 468H232L254 488Z"/><path stroke="#070d1e" stroke-width="2" d="M141 446V418M150 428h-18"/><ellipse class="dash" cx="142" cy="470" rx="122" ry="30" fill="none" stroke="#2fd0ff" stroke-width="2.2" stroke-dasharray="10 8"/></g><g transform="translate(0,600)"><use class="wv" href="#w" fill="#1e4a8a" fill-opacity=".55"/></g><g font-family="Cambria Math,STIX Two Math,Georgia,serif" font-style="italic" font-size="15" fill="#9fe6ff" fill-opacity=".6" text-anchor="middle"><text x="200" y="625">(x+3)² + (y−2)² = 1</text><text x="200" y="648">x²/6,25 + y²/0,25 = 1</text></g><g transform="translate(0,655)"><use class="wv r" href="#w" fill="#0b2a5c" fill-opacity=".8"/></g><g transform="translate(0,725)"><use class="wv" href="#w" fill="#040b1a"/></g></svg><div class="ovc"><div class="logo"><b>CÔNICA<br>NAVAL</b><i>BATTLESHIP</i></div><div class="card"><h2 id="ovt">Duelo de equações</h2><p id="ovp"></p><button id="backNames" class="lb hide">← Voltar</button><div id="nm" class="hide"><input id="n1" maxlength="14" placeholder="Capitão 1" autocomplete="off"><input id="n2" maxlength="14" placeholder="Capitão 2" autocomplete="off"><label id="cpuLevelWrap" class="hide" for="cpuLevel">Dificuldade<select id="cpuLevel"><option value="easy">Fácil</option><option value="normal" selected>Normal</option><option value="hard">Difícil</option></select></label></div><button id="modePick">Modo: Clássico</button><button id="ovb">👥 2 jogadores</button><button id="ovc">🤖 Contra o computador</button><button id="learn">📚 Aprender</button></div>
 <div id="credit">Feito por Eduardo Fernandes, F³</div></div></div>
 <div id="lrn" class="hide"><div class="lw">
 <div id="lhome"><button class="lb" id="lback">← Voltar</button>
@@ -166,9 +174,12 @@ const c=document.getElementById('c'),g=c.getContext('2d');
 const $=id=>document.getElementById(id);
 const P=[{ships:[],bombs:[]},{ships:[],bombs:[]}];
 let cur=0,phase='place',idx=0,vert=false,nextFn=null,aim=null,viewMine=false,vsCPU=false,lock=false;
+let gameMode='classic',skillUsedThisTurn=[false,false],skillUIOpen=false,skillLine=null,skillCurve=null,skillCurveLines=[],scanState=null;
+const LIFE=[3,2,2,2,1],SKILL_NAMES=['Salva do porta-aviões','Bomba graduada do encouraçado','Reposicionamento do cruzador','Torpedo do submarino','Leitura do destróier'];
+const NAME_FORM=$('nm').innerHTML;
 const fmt=n=>String(n).replace('.',',');
 const dims=L=>vert?{rx:.5,ry:L/2}:{rx:L/2,ry:.5};
-const mk=(t,x,y)=>({t,L:LENS[t],x,y,...dims(LENS[t]),hits:0,hp:Math.ceil(LENS[t]/2)});
+const mk=(t,x,y)=>({t,L:LENS[t],x,y,...dims(LENS[t]),hits:0,hp:LIFE[t],used:false});
 const pts=(s,n=120)=>{const r=[];for(let i=0;i<n;i++){const a=2*Math.PI*i/n;r.push([s.x+s.rx*Math.cos(a),s.y+s.ry*Math.sin(a)])}return r};
 const inside=(s,x,y)=>((x-s.x)/s.rx)**2+((y-s.y)/s.ry)**2<=1;
 const overlap=(s,t)=>pts(s).some(p=>inside(t,...p))||pts(t).some(p=>inside(s,...p));
@@ -246,6 +257,7 @@ function draw(){
   const E=P[1-cur].ships;
   const mine=viewMine||(vsCPU&&cur===1),hh=(vsCPU&&cur===1)?0:cur,SH=mine?P[hh].ships:E,BM=mine?P[1-hh].bombs:P[cur].bombs;SH.forEach(s=>{if(mine||sunk(s))art(s)});
   BM.forEach(b=>{
+   if(b.visible===false)return;
    const X=px(b.x),Y=py(b.y),age=now-b.t,KK=K*(b.r||1);
    if(b.hit){const fl=.75+.25*Math.sin(now/90+b.x),rg=g.createRadialGradient(X,Y,2,X,Y,KK);
     rg.addColorStop(0,`rgba(255,235,130,${.9*fl})`);rg.addColorStop(.5,`rgba(255,110,30,${.5*fl})`);rg.addColorStop(1,'rgba(255,60,0,0)');
@@ -254,6 +266,8 @@ function draw(){
    if(age<800){g.strokeStyle=`rgba(255,255,255,${1-age/800})`;g.lineWidth=4;g.beginPath();g.arc(X,Y,KK*(.3+age/800*1.3),0,7);g.stroke()}
   });
   SH.forEach((s,i)=>{if(s.hits&&(mine||sunk(s)))smoke(s,now,i*7)});
+  if(skillLine&&gameMode==='special'){g.strokeStyle='#2fd0ff';g.lineWidth=3;g.setLineDash([10,6]);g.beginPath();g.moveTo(px(skillLine.x1),py(skillLine.y1));g.lineTo(px(skillLine.x2),py(skillLine.y2));g.stroke();g.setLineDash([])}
+  if(skillCurveLines.length&&gameMode==='special'){g.strokeStyle='#2fd0ff';g.lineWidth=2.5;g.beginPath();skillCurveLines.forEach(q=>{g.moveTo(px(q[0]),py(q[1]));g.lineTo(px(q[2]),py(q[3]))});g.stroke()}
   if(aim&&!viewMine){g.beginPath();g.arc(px(aim.x),py(aim.y),K*bigR(),0,7);g.setLineDash([9,6]);g.strokeStyle='#fff';g.lineWidth=3;g.stroke();g.setLineDash([])}
  }
  g.restore();
@@ -272,6 +286,8 @@ function msg(txt){
  $('rot').classList.toggle('hide',phase!=='place'||idx>=LENS.length);
  $('rot').textContent=vert?'↕ Vertical':'↔ Horizontal';
  $('ok').textContent=phase==='place'?(idx<LENS.length?'Posicionar':'Pronto'):'💣 Lançar bomba';$('ok').disabled=lock||(phase==='play'&&vsCPU&&cur===1);$('mine').classList.toggle('hide',phase!=='play'||(vsCPU&&cur===1));$('mine').textContent=viewMine?'🎯 Voltar ao ataque':'👁 Minha frota';
+ const alive=P[cur].ships.filter(s=>!sunk(s)&&!s.used).length;$('skill').classList.toggle('hide',phase!=='play'||gameMode!=='special'||(vsCPU&&cur===1)||alive===0);$('skill').disabled=lock||skillUsedThisTurn[cur]||phase!=='play'||(vsCPU&&cur===1);
+ $('skillStatus').textContent=(gameMode==='special'&&scanState&&scanState.owner===cur&&P[cur].ships[4]&&!sunk(P[cur].ships[4]))?`Leitura ativa do destróier: ${scanState.text}`:'';
  fleet();
 }
 function refresh(){buildEq();msg();if(phase==='play'){musicStop();battlePlay()}}
@@ -280,9 +296,9 @@ let NM=['Jogador 1','Jogador 2'],stage='start';
 const INTRO_TXT=$('ovp').textContent;
 $('again').onclick=()=>{
  P[0]={ships:[],bombs:[]};P[1]={ships:[],bombs:[]};
- cur=0;phase='place';idx=0;vert=false;nextFn=null;aim=null;viewMine=false;vsCPU=false;lock=false;NM=['Jogador 1','Jogador 2'];stage='start';
+ cur=0;phase='place';idx=0;vert=false;nextFn=null;aim=null;viewMine=false;vsCPU=false;lock=false;gameMode='classic';skillUsedThisTurn=[false,false];skillLine=null;skillCurve=null;skillCurveLines=[];scanState=null;skillUIOpen=false;NM=['Jogador 1','Jogador 2'];stage='start';
  $('win').classList.add('hide');$('ok').classList.remove('hide');
- $('ovt').textContent='Duelo de equações';$('ovp').textContent=INTRO_TXT;$('ovb').textContent='👥 2 jogadores';
+ $('ovt').textContent='Duelo de equações';$('ovp').textContent=INTRO_TXT;$('ovb').textContent='👥 2 jogadores';$('modePick').classList.remove('hide');$('modePick').textContent='Modo: Clássico';
  $('ovc').classList.remove('hide');$('learn').classList.remove('hide');$('backNames').classList.add('hide');$('cpuLevelWrap').classList.add('hide');$('cpuLevel').value='normal';$('nm').classList.add('hide');
  $('n1').value='';$('n2').value='';$('n1').placeholder='Capitão 1';$('n2').classList.remove('hide');
  $('ov').classList.remove('hide');
@@ -290,10 +306,13 @@ $('again').onclick=()=>{
  battleStop();musicPlay();refresh();
 };
 $('mine').onclick=()=>{viewMine=!viewMine;msg()};
-$('backNames').onclick=()=>{stage='start';vsCPU=false;$('cpuLevelWrap').classList.add('hide');$('cpuLevel').value='normal';$('ovt').textContent='Duelo de equações';$('ovp').textContent='';$('nm').classList.add('hide');$('backNames').classList.add('hide');$('ovc').classList.remove('hide');$('learn').classList.remove('hide');$('ovb').textContent='👥 2 jogadores';$('n1').value='';$('n2').value='';$('n1').placeholder='Capitão 1';$('n2').classList.remove('hide')};
+$('modePick').onclick=()=>{gameMode=gameMode==='classic'?'special':'classic';$('modePick').textContent=gameMode==='classic'?'Modo: Clássico':'Modo: Especial';};
+$('skill').onclick=openSkillMenu;
+$('backNames').onclick=()=>{stage='start';vsCPU=false;gameMode='classic';$('modePick').textContent='Modo: Clássico';$('modePick').classList.remove('hide');$('cpuLevelWrap').classList.add('hide');$('cpuLevel').value='normal';$('ovt').textContent='Duelo de equações';$('ovp').textContent='';$('nm').classList.add('hide');$('backNames').classList.add('hide');$('ovc').classList.remove('hide');$('learn').classList.remove('hide');$('ovb').textContent='👥 2 jogadores';$('n1').value='';$('n2').value='';$('n1').placeholder='Capitão 1';$('n2').classList.remove('hide')};
 $('ovc').onclick=()=>{vsCPU=true;$('ovb').click();$('n2').classList.add('hide');$('n1').placeholder='Seu nome';$('ovp').textContent='Digite seu nome, capitão!'};
 $('ovb').onclick=()=>{
- if(stage==='start'){stage='names';$('ovc').classList.add('hide');$('learn').classList.add('hide');$('backNames').classList.remove('hide');$('cpuLevelWrap').classList.toggle('hide',!vsCPU);$('ovt').textContent=vsCPU?'Identifique-se, capitão!':'Identifiquem-se, capitães!';$('ovp').textContent=vsCPU?'Digite seu nome, capitão!':'Quem comanda cada frota?';$('nm').classList.remove('hide');$('ovb').textContent='⚔ Ir à batalha';return}
+ if(skillUIOpen){closeSkillPanel();return}
+ if(stage==='start'){stage='names';$('ovc').classList.add('hide');$('learn').classList.add('hide');$('modePick').classList.add('hide');$('backNames').classList.remove('hide');$('cpuLevelWrap').classList.toggle('hide',!vsCPU);$('ovt').textContent=vsCPU?'Identifique-se, capitão!':'Identifiquem-se, capitães!';$('ovp').textContent=vsCPU?'Digite seu nome, capitão!':'Quem comanda cada frota?';$('nm').classList.remove('hide');$('ovb').textContent='⚔ Ir à batalha';return}
  if(stage==='names'){stage='play';NM=[$('n1').value.trim()||'Jogador 1',vsCPU?'Computador':($('n2').value.trim()||'Jogador 2')];$('nm').classList.add('hide');$('backNames').classList.add('hide')}
  $('ov').classList.add('hide');nextFn&&nextFn();nextFn=null;refresh()
 };
@@ -305,9 +324,9 @@ $('ok').onclick=()=>{if(phase==='play'&&viewMine){viewMine=false;msg();return}
    if(!aim)return msg('Preencha os dois números da equação.');
    const s=mk(idx,aim.x,aim.y);if(!valid(s))return msg('Posição inválida: fora do mapa (−10 a 10) ou sobreposta.');
    P[cur].ships.push(s);sfx.place(s.t);idx++;
-  }else if(cur===0&&vsCPU){cpuPlace();return overlay('Fase de ataque','O Computador posicionou a frota. Você ataca primeiro!','Começar',()=>{phase='play';cur=0})}
-  else if(cur===0)return overlay('Passe para '+NM[1],NM[0]+' terminou. Não olhe a tela!',NM[1]+' posiciona',()=>{cur=1;idx=0;vert=false});
-  else return overlay('Fase de ataque',NM[0]+' começa atacando.','Começar',()=>{phase='play';cur=0});
+  }else if(cur===0&&vsCPU){cpuPlace();return overlay('Fase de ataque','O Computador posicionou a frota. Você ataca primeiro!','Começar',()=>{phase='play';cur=0;skillUsedThisTurn[0]=false})}
+  else if(cur===0)return overlay('Passe para '+NM[1],NM[0]+' terminou. Não olhe a tela!',NM[1]+' posiciona',()=>{cur=1;skillUsedThisTurn[1]=false;idx=0;vert=false});
+  else return overlay('Fase de ataque',NM[0]+' começa atacando.','Começar',()=>{phase='play';cur=0;skillUsedThisTurn[0]=false});
   refresh();
  }else{
   if(lock)return;
@@ -320,13 +339,125 @@ $('ok').onclick=()=>{if(phase==='play'&&viewMine){viewMine=false;msg();return}
   if(E.every(sunk)){battleStop();aim=null;fleet();$('ok').classList.add('hide');$('eq').innerHTML='';setTimeout(()=>{$('wn').textContent=NM[cur];$('win').classList.remove('hide');victoryPlay()},1600);return msg(`🏆 ${NM[cur]} venceu a batalha!`)}
   buildEq();fleet();
   if(hit.length&&vsCPU&&cur===1)setTimeout(cpuTurn,1500);if(hit.length){const C=vsCPU&&cur===1;msg(`🎯 ${C?'O Computador acertou':'Acertou'} o ${hit.join(' e o ')}!${down.length?' 🔥 '+down.join(', ')+' afundou!':''}${C?'':' Jogue novamente.'}`)}
-  else{lock=true;msg('💦 Água! Errou.');if(vsCPU){setTimeout(()=>{lock=false;cur=1-cur;viewMine=false;refresh();if(cur===1)cpuTurn()},1200);return}setTimeout(()=>overlay('Água!',`Passe para ${NM[1-cur]}.`,'Pronto',()=>{lock=false;cur=1-cur}),900)}
+  else{lock=true;msg('💦 Água! Errou.');if(vsCPU){setTimeout(()=>{lock=false;cur=1-cur;skillUsedThisTurn[cur]=false;viewMine=false;refresh();if(cur===1)cpuTurn()},1200);return}setTimeout(()=>overlay('Água!',`Passe para ${NM[1-cur]}.`,'Pronto',()=>{lock=false;cur=1-cur;skillUsedThisTurn[cur]=false}),900)}
  }
 };
 document.getElementById('w').setAttribute('d','M-1600,0q50,-22 100,0'+' t100,0'.repeat(41)+'V300H-1600Z');
 function cpuPlace(){const sv=cur;cur=1;P[1].ships=[];LENS.forEach((L,i)=>{for(let n=0;n<500;n++){vert=Math.random()<.5;const s=mk(i,Math.round((Math.random()*18-9)*2)/2,Math.round((Math.random()*18-9)*2)/2);if(valid(s)){P[1].ships.push(s);break}}});cur=sv;vert=false}
+
+function parseNumberField(id){const z=$(id).value.trim().replace(/[−–—]/g,'-').replace(',','.');if(!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(z))return null;const v=Number(z);return Number.isFinite(v)&&Math.abs(v)<=H?v:null}
+function skillButton(code,label,desc){return `<button type="button" data-sk="${code}"><b>${label}</b><br><small>${desc}</small></button>`}
+function openSkillMenu(){
+ if(gameMode!=='special'||phase!=='play'||skillUsedThisTurn[cur]||lock)return;
+ skillUIOpen=true;skillLine=null;$('ov').classList.add('skillveil');$('ovt').textContent='Habilidades especiais';$('ovp').textContent='Escolha uma habilidade disponível. Usá-la consome a ação deste turno.';$('nm').innerHTML='<div class="skillform" id="skillChoices"></div>';$('nm').classList.remove('hide');$('ovc').classList.add('hide');$('learn').classList.add('hide');$('backNames').classList.add('hide');$('modePick').classList.add('hide');$('ovb').textContent='Fechar';$('ov').classList.remove('hide');
+ const box=$('skillChoices'),ships=P[cur].ships.filter(s=>!s.used&&!sunk(s));box.innerHTML=ships.map(s=>skillButton(s.t,SKILL_NAMES[s.t],['7 bombas, raio 0,5; centros separados por mais de 2.','Raio √3; dano varia com a distância ao centro.','Reposiciona e apaga metade dos marcadores inimigos.','Trajetória da posição do submarino até à borda.','Conta navios ocultos nas regiões de uma curva.'][s.t])).join('');box.querySelectorAll('[data-sk]').forEach(b=>b.onclick=()=>openSkillForm(+b.dataset.sk));
+}
+function closeSkillPanel(){skillUIOpen=false;skillLine=null;skillCurve=null;skillCurveLines=[];$('ov').classList.remove('skillveil');$('ov').classList.add('hide');$('nm').innerHTML=NAME_FORM;$('nm').classList.add('hide');$('ovb').textContent='👥 2 jogadores';refresh()}
+function setSkillPanel(title,copy,html){$('ovt').textContent=title;$('ovp').textContent=copy;$('nm').innerHTML=`<div class="skillform">${html}</div>`;$('nm').classList.remove('hide');}
+function skillInputForm(title,copy,labels,confirm,preview=''){
+ setSkillPanel(title,copy,`<label>${labels[0]}<input id="skx" inputmode="decimal" placeholder="0" autocomplete="off"></label><label>${labels[1]}<input id="sky" inputmode="decimal" placeholder="0" autocomplete="off"></label><div class="skillrow">${preview?`<button id="skPreview" type="button">Prévia</button>`:''}<button id="skConfirm" type="button">${confirm}</button></div><button id="skBack" type="button" class="lb">← Habilidades</button>`);
+ $('skBack').onclick=openSkillMenu;
+}
+function consumeSkill(ship){ship.used=true;skillUsedThisTurn[cur]=true}
+function skillTurnResult(hit,text){
+ closeSkillPanel();aim=null;skillLine=null;refresh();
+ if(P[1-cur].ships.every(sunk)){battleStop();$('ok').classList.add('hide');$('eq').innerHTML='';$('wn').textContent=NM[cur];$('win').classList.remove('hide');victoryPlay();msg(`🏆 ${NM[cur]} venceu a batalha!`);return}
+ if(hit){msg(text);return}
+ lock=true;msg(text);if(vsCPU){setTimeout(()=>{lock=false;cur=1-cur;skillUsedThisTurn[cur]=false;viewMine=false;refresh();if(cur===1)cpuTurn()},1100)}else setTimeout(()=>overlay('Habilidade usada',`Passe para ${NM[1-cur]}.`,'Pronto',()=>{lock=false;cur=1-cur;skillUsedThisTurn[cur]=false;viewMine=false}),850);
+}
+function addSkillBomb(x,y,r,damageFn){
+ const E=P[1-cur].ships,hit=[],down=[];
+ E.forEach(s=>{if(sunk(s))return;const d=damageFn(s,x,y,r);if(d>0){s.hits=Math.min(s.hp,s.hits+d);hit.push(NAMES[s.t]);if(sunk(s))down.push(NAMES[s.t])}});
+ P[cur].bombs.push({x,y,r,hit:hit.length>0,hitShips:hit.slice(),sunkShips:down.slice(),visible:true,t:performance.now()});return {hit,down};
+}
+function runCarrier(){
+ const points=[],prior=P[cur].bombs;
+ for(let i=0;i<7;i++){
+  let q=null;for(let j=0;j<1500&&!q;j++){const x=Math.round((Math.random()*20-10)*2)/2,y=Math.round((Math.random()*20-10)*2)/2;if(prior.every(b=>Math.hypot(b.x-x,b.y-y)>=.8)&&points.every(b=>Math.hypot(b.x-x,b.y-y)>2))q={x,y}}
+  if(!q){setSkillPanel('Salva do porta-aviões','Não foi possível posicionar sete bombas válidas sem sobreposição. Tente novamente.',`<button id="skRetry" type="button">Tentar novamente</button><button id="skBack" type="button" class="lb">← Habilidades</button>`);$('skRetry').onclick=runCarrier;$('skBack').onclick=openSkillMenu;return}
+  points.push(q);
+ }
+ let all=[],any=false;
+ points.forEach(q=>{const z=addSkillBomb(q.x,q.y,.5,(s,x,y,r)=>hits(s,x,y,r)?1:0);all.push(...z.hit);any||=z.hit.length>0});
+ const ship=P[cur].ships[0];consumeSkill(ship);sfx.bomb(any,points.some(q=>P[1-cur].ships.some(s=>sunk(s)&&hits(s,q.x,q.y,.5))));
+ skillTurnResult(any,`Salva lançada: 7 bombas. ${all.length?`Acertou ${all.length} vez(es).`: 'Nenhum navio atingido.'}`);
+}
+function openSkillForm(t){
+ if(t===0){setSkillPanel(SKILL_NAMES[t],'Sete bombas de raio 0,5 serão lançadas em posições aleatórias, separadas por mais de 2 unidades.','<button id="skGo" type="button">Lançar salva</button><button id="skBack" type="button" class="lb">← Habilidades</button>');$('skGo').onclick=runCarrier;$('skBack').onclick=openSkillMenu;return}
+ if(t===1){skillInputForm(SKILL_NAMES[t],'Escolha o centro da bomba. Todos os navios no alcance são atingidos; o dano depende da distância ao centro de cada navio.',['Coordenada x','Coordenada y'],'Disparar');$('skConfirm').onclick=fireBattleship;return}
+ if(t===2){setSkillPanel(SKILL_NAMES[t],'O cruzador será movido para uma posição aleatória segura e metade dos marcadores inimigos será apagada.','<button id="skGo" type="button">Reposicionar</button><button id="skBack" type="button" class="lb">← Habilidades</button>');$('skGo').onclick=moveCruiser;$('skBack').onclick=openSkillMenu;return}
+ if(t===3){skillInputForm(SKILL_NAMES[t],'Escolha um ponto de mira. A reta passa pelo centro do submarino; o torpedo segue nessa direção até à borda.',['Mira x','Mira y'],'Disparar torpedo','yes');$('skx').oninput=previewTorpedo;$('sky').oninput=previewTorpedo;$('skPreview').onclick=previewTorpedo;$('skConfirm').onclick=fireTorpedo;return}
+ if(t===4){setSkillPanel(SKILL_NAMES[t],'Digite qualquer equação implícita F(x,y)=0 ou uma função y=f(x). Sintaxe: + − * / ^, parênteses, sin, cos, tan (ângulos em radianos), sqrt, abs, exp, log, pi, e.','<label>Equação ou função<input id="curveExpr" placeholder="y=x ou x^2+y^2=9" autocomplete="off"></label><button id="skPreview" type="button">Pré-visualizar regiões</button><div id="curveResult"></div><button id="skUseCurve" type="button" disabled>Usar leitura</button><button id="skBack" type="button" class="lb">← Habilidades</button>');$('skPreview').onclick=previewCurve;$('curveExpr').oninput=()=>{$('skUseCurve').disabled=true;$('curveResult').textContent='Prévia desatualizada; confira a equação novamente.';skillCurve=null;skillCurveLines=[]};$('skUseCurve').onclick=useCurveSkill;$('skBack').onclick=openSkillMenu;return}
+}
+function fireBattleship(){
+ const x=parseNumberField('skx'),y=parseNumberField('sky');if(x===null||y===null)return $('ovp').textContent='Digite coordenadas válidas entre −10 e 10.';
+ if(P[cur].bombs.some(b=>Math.hypot(b.x-x,b.y-y)<.8))return $('ovp').textContent='A bomba precisa ficar a pelo menos 0,8 de outra.';
+ const r=Math.sqrt(3),damage=(s,a,b)=>{const d=Math.hypot(s.x-a,s.y-b);return d<=.75?3:d<=1.3?2:d<=r?1:0};
+ const z=addSkillBomb(x,y,r,damage),ship=P[cur].ships[1];consumeSkill(ship);sfx.bomb(z.hit.length>0,z.down.length>0);skillTurnResult(z.hit.length>0,`Bomba graduada: ${z.hit.length?`atingiu ${z.hit.length} navio(s), causando dano ${z.down.length?`e afundando ${z.down.join(', ')}.`: '(localização mantida oculta).'}`:'água.'}`);
+}
+function moveCruiser(){
+ const fleet=P[cur].ships,ship=fleet.find(s=>s.t===2),old={x:ship.x,y:ship.y,rx:ship.rx,ry:ship.ry},oldIndex=fleet.indexOf(ship),enemyBombs=P[1-cur].bombs;fleet.splice(oldIndex,1);let found=null;
+ for(let i=0;i<7000&&!found;i++){const x=Math.round((Math.random()*18-9)*2)/2,y=Math.round((Math.random()*18-9)*2)/2;vert=Math.random()<.5;const q=mk(2,x,y);if(valid(q)&&enemyBombs.every(b=>!hits(q,b.x,b.y,b.r||1)))found=q}
+ fleet.splice(oldIndex,0,ship);vert=false;
+ if(!found){Object.assign(ship,old);setSkillPanel('Sem posição segura','Não encontramos um local legal fora das áreas bombardeadas. A habilidade não foi consumida.','<button id="skBack" type="button">Voltar</button>');$('skBack').onclick=openSkillMenu;return}
+ Object.assign(ship,found);const enemy=1-cur,records=P[enemy].bombs.filter(b=>b.visible!==false);const erase=Math.floor(records.length/2);for(let i=0;i<erase;i++){const j=Math.floor(Math.random()*records.length);records.splice(j,1)[0].visible=false}
+ consumeSkill(ship);updateScanAfterCruiser(cur);skillTurnResult(false,`Cruzador reposicionado. ${erase} marcador(es) de bomba apagado(s); danos e histórico permanecem registrados.`);
+}
+function lineEndFrom(s,x,y){const dx=x-s.x,dy=y-s.y;if(Math.hypot(dx,dy)<1e-8)return null;const ts=[];if(dx>0)ts.push((10-s.x)/dx);if(dx<0)ts.push((-10-s.x)/dx);if(dy>0)ts.push((10-s.y)/dy);if(dy<0)ts.push((-10-s.y)/dy);const t=Math.min(...ts.filter(t=>t>0));return {x:s.x+dx*t,y:s.y+dy*t,dx,dy}}
+function previewTorpedo(){const sub=P[cur].ships[3],x=parseNumberField('skx'),y=parseNumberField('sky');if(x===null||y===null){skillLine=null;return}const e=lineEndFrom(sub,x,y);if(!e){skillLine=null;return}skillLine={x1:sub.x,y1:sub.y,x2:e.x,y2:e.y};const m=e.dy/e.dx,b=sub.y-m*sub.x,eq=e.dx===0?'x='+fmt(sub.x):`y=${fmt(m)}x${b<0?' − '+fmt(-b):' + '+fmt(b)}`;$('ovp').textContent=`Trajetória: ${eq}. Confirme para disparar.`}
+function segmentEllipseEntry(s,x0,y0,x1,y1){const ax=(x0-s.x)/s.rx,ay=(y0-s.y)/s.ry,dx=(x1-x0)/s.rx,dy=(y1-y0)/s.ry,A=dx*dx+dy*dy,B=2*(ax*dx+ay*dy),C=ax*ax+ay*ay-1,D=B*B-4*A*C;if(D<0)return null;const q=Math.sqrt(D),t1=(-B-q)/(2*A),t2=(-B+q)/(2*A),v=[t1,t2].filter(t=>t>=0&&t<=1);return v.length?Math.min(...v):null}
+function fireTorpedo(){
+ const x=parseNumberField('skx'),y=parseNumberField('sky');if(x===null||y===null)return $('ovp').textContent='Escolha uma mira entre −10 e 10.';const sub=P[cur].ships[3],e=lineEndFrom(sub,x,y);if(!e)return $('ovp').textContent='A mira precisa ser diferente da posição do submarino.';
+ const enemies=P[1-cur].ships.map(s=>({s,t:segmentEllipseEntry(s,sub.x,sub.y,e.x,e.y)})).filter(a=>a.t!==null&&!sunk(a.s)).sort((a,b)=>a.t-b.t);let hit=false,down=[];
+ if(enemies.length){const {s,t}=enemies[0],hx=sub.x+(e.x-sub.x)*t,hy=sub.y+(e.y-sub.y)*t,dist=Math.abs((e.dx*(s.y-sub.y)-e.dy*(s.x-sub.x)))/Math.hypot(e.dx,e.dy);if(dist<=.5+1e-9){s.hits=s.hp;down.push(NAMES[s.t])}else s.hits=Math.min(s.hp,s.hits+1);hit=true;P[cur].bombs.push({x:hx,y:hy,r:.18,hit:true,hitShips:[NAMES[s.t]],sunkShips:down.slice(),visible:false,t:performance.now()})}
+ const ship=P[cur].ships[3];consumeSkill(ship);if(hit)sfx.bomb(true,down.length>0);skillLine={x1:sub.x,y1:sub.y,x2:e.x,y2:e.y};skillTurnResult(hit,hit?(down.length?`Torpedo de precisão: ${down.join(', ')} afundou!`:'O torpedo atingiu um navio e causou 1 de dano; sua localização permanece oculta.'):'O torpedo não encontrou navio.');
+}
+function tokenizeCurve(src){const tokens=[];let i=0;while(i<src.length){if(/\s/.test(src[i])){i++;continue}const m=src.slice(i).match(/^(?:(\d+(?:\.\d*)?|\.\d+)|([a-zA-Z]+)|(.))/);if(!m)throw Error('Símbolo inválido');if(m[1])tokens.push({t:'n',v:Number(m[1])});else if(m[2])tokens.push({t:'id',v:m[2].toLowerCase()});else if('+-*/^()=' .includes(m[3]))tokens.push({t:m[3]});else throw Error('Use somente operações e funções permitidas.');i+=m[0].length}return tokens}
+function compileCurve(src){let tok=tokenizeCurve(src),i=0,peek=()=>tok[i]?.t,parseExpr,parseAtom;const take=t=>{if(peek()!==t)throw Error('Equação incompleta');return tok[i++]};
+ parseAtom=()=>{if(peek()==='+'||peek()==='-'){const op=tok[i++].t,n=parseAtom();return op==='-'?{k:'neg',n}:{k:'pos',n}}if(peek()==='n')return {k:'n',v:tok[i++].v};if(peek()==='('){take('(');const n=parseExpr();take(')');return n}if(peek()==='id'){const name=tok[i++].v;if(name==='x'||name==='y')return {k:'v',v:name};if(name==='pi'||name==='e')return {k:'n',v:name==='pi'?Math.PI:Math.E};if(['sin','cos','tan','sqrt','abs','exp','log'].includes(name)){take('(');const n=parseExpr();take(')');return {k:'fn',v:name,n}}throw Error('Variável/função não permitida: '+name)}throw Error('Use x, y, números, operações ou funções permitidas.')};
+ const parsePow=()=>{let a=parseAtom();if(peek()==='^'){take('^');a={k:'op',v:'^',a,b:parsePow()}}return a};const parseTerm=()=>{let a=parsePow();while(peek()==='*'||peek()==='/'){const op=tok[i++].t;a={k:'op',v:op,a,b:parsePow()}}return a};parseExpr=()=>{let a=parseTerm();while(peek()==='+'||peek()==='-'){const op=tok[i++].t;a={k:'op',v:op,a,b:parseTerm()}}return a};
+ let equal=tok.findIndex(t=>t.t==='=');let left,right;if(equal>=0){const a=tok.slice(0,equal),b=tok.slice(equal+1);if(!a.length||!b.length||tok.filter(t=>t.t==='=').length>1)throw Error('Use apenas uma igualdade, como x^2+y^2=9.');tok=a;i=0;left=parseExpr();if(i!==tok.length)throw Error('Trecho inválido antes da igualdade.');tok=b;i=0;right=parseExpr();if(i!==tok.length)throw Error('Trecho inválido depois da igualdade.')}else{left=parseExpr();if(i!==tok.length)throw Error('Trecho inválido.');right={k:'v',v:'y'}}
+ const ev=(n,x,y)=>{switch(n.k){case'n':return n.v;case'v':return n.v==='x'?x:y;case'pos':return ev(n.n,x,y);case'neg':return -ev(n.n,x,y);case'fn':{const a=ev(n.n,x,y);return Math[n.v](a)}case'op':{const a=ev(n.a,x,y),b=ev(n.b,x,y);return n.v==='+'?a+b:n.v==='-'?a-b:n.v==='*'?a*b:n.v==='/'?a/b:Math.pow(a,b)}}};return(x,y)=>ev(left,x,y)-ev(right,x,y)}
+function analyzeCurve(source){let fn=compileCurve(source),n=100,N=n+1,step=20/n,vals=new Float64Array(N*N),blocked=new Uint8Array(N*N),idx=(i,j)=>j*N+i;for(let j=0;j<N;j++)for(let i=0;i<N;i++){let v;try{v=fn(-10+i*step,-10+j*step)}catch{v=NaN}vals[idx(i,j)]=Number.isFinite(v)?v:NaN}
+ const mark=(i,j)=>{for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++){const x=i+a,y=j+b;if(x>=0&&x<N&&y>=0&&y<N)blocked[idx(x,y)]=1}};
+ for(let j=0;j<N;j++)for(let i=0;i<N;i++){const v=vals[idx(i,j)];if(Number.isFinite(v)&&Math.abs(v)<.09)mark(i,j);for(const [di,dj] of [[1,0],[0,1]]){const x=i+di,y=j+dj;if(x>=N||y>=N)continue;const w=vals[idx(x,y)];if(!Number.isFinite(v)||!Number.isFinite(w))continue;if(v===0||w===0||v*w<0){if(Math.abs(v)<1e4&&Math.abs(w)<1e4){mark(i,j);mark(x,y)}}}}
+ let ids=new Int32Array(N*N);ids.fill(-1);let comps=0;for(let k=0;k<N*N;k++){if(blocked[k]||ids[k]>=0)continue;const q=[k];ids[k]=comps;for(let h=0;h<q.length;h++){const a=q[h],i=a%N,j=(a/N)|0;for(const [x,y] of [[i-1,j],[i+1,j],[i,j-1],[i,j+1]])if(x>=0&&x<N&&y>=0&&y<N){const b=idx(x,y);if(!blocked[b]&&ids[b]<0){ids[b]=comps;q.push(b)}}}comps++}
+ const counts=Array(comps).fill(0);let on=0;for(const s of P[1-cur].ships){if(sunk(s))continue;const i=Math.max(0,Math.min(n,Math.round((s.x+10)/step))),j=Math.max(0,Math.min(n,Math.round((s.y+10)/step))),k=idx(i,j);if(blocked[k])on++;else if(ids[k]>=0)counts[ids[k]]++}
+ return {regions:comps,counts,on,fn,source};}
+function curveText(a){return a.counts.map((n,i)=>`região ${i+1}: ${n}`).join(' · ')+(a.on?` · sobre a curva: ${a.on}`:' · sobre a curva: 0')}
+function buildCurveLines(fn){const out=[],step=.4,coords=[[0,0],[1,0],[1,1],[0,1]];for(let i=0;i<50;i++)for(let j=0;j<50;j++){const x=-10+i*step,y=-10+j*step;let v=[fn(x,y),fn(x+step,y),fn(x+step,y+step),fn(x,y+step)];if(v.some(z=>!Number.isFinite(z)||Math.abs(z)>1000))continue;const ps=[];for(let k=0;k<4;k++){const n=(k+1)%4;if(v[k]===0||v[k]*v[n]<0){const q=Math.abs(v[k])/(Math.abs(v[k])+Math.abs(v[n])||1),a=coords[k],b=coords[n];ps.push([x+step*(a[0]+(b[0]-a[0])*q),y+step*(a[1]+(b[1]-a[1])*q)])}}if(ps.length>=2)out.push([ps[0][0],ps[0][1],ps[1][0],ps[1][1]])}return out}
+function previewCurve(){try{const a=analyzeCurve($('curveExpr').value.trim());skillCurve=compileCurve(a.source);skillCurveLines=buildCurveLines(skillCurve);$('curveResult').textContent=`Prévia: ${a.regions} região(ões); ${curveText(a)}.`;$('skUseCurve').disabled=a.regions<2;$('skUseCurve').dataset.src=a.source}catch{skillCurve=null;skillCurveLines=[]; $('curveResult').textContent='Equação inválida ou não avaliável. Confira a sintaxe.';$('skUseCurve').disabled=true}}
+function useCurveSkill(){const s=P[cur].ships[4];if(sunk(s)||s.used||skillUsedThisTurn[cur])return;let a;try{a=analyzeCurve($('skUseCurve').dataset.src)}catch{return}if(a.regions<2)return $('curveResult').textContent='A curva precisa dividir o tabuleiro em pelo menos duas regiões.';consumeSkill(s);scanState={owner:cur,source:a.source,text:curveText(a)};skillTurnResult(false,`Leitura do destróier: ${curveText(a)}.`)}
+function updateScanAfterCruiser(mover){if(!scanState||scanState.owner===mover)return;const d=P[scanState.owner].ships[4];if(!d||sunk(d))return;const save=cur;cur=scanState.owner;try{const a=analyzeCurve(scanState.source);scanState.text=curveText(a)}catch{}cur=save}
+
+function cpuUseSpecialSkill(){
+ const level=$('cpuLevel').value,chance=level==='easy'?.12:level==='normal'?.3:.55;
+ if(skillUsedThisTurn[1]||Math.random()>chance)return false;
+ const opts=P[1].ships.filter(s=>!s.used&&!sunk(s));if(!opts.length)return false;
+ cur=1;const ship=opts[Math.floor(Math.random()*opts.length)],en=P[0].ships;let hit=false,summary='';
+ if(ship.t===0){
+  const pts=[];for(let i=0;i<7;i++){let q=null;for(let a=0;a<1800&&!q;a++){const x=Math.round((Math.random()*20-10)*2)/2,y=Math.round((Math.random()*20-10)*2)/2;if(P[1].bombs.every(b=>Math.hypot(b.x-x,b.y-y)>=.8)&&pts.every(b=>Math.hypot(b.x-x,b.y-y)>2))q={x,y}}if(!q)break;pts.push(q)}
+  if(pts.length<7)return false;let n=0;for(const q of pts){const z=addSkillBomb(q.x,q.y,.5,(s,x,y,r)=>hits(s,x,y,r)?1:0);n+=z.hit.length}hit=n>0;summary=`O Computador lançou a salva do porta-aviões (${n} acerto(s)).`;sfx.bomb(hit,false);
+ }else if(ship.t===1){
+  let q=null;for(let i=0;i<500&&!q;i++){const x=Math.round((Math.random()*20-10)*2)/2,y=Math.round((Math.random()*20-10)*2)/2;if(P[1].bombs.every(b=>Math.hypot(b.x-x,b.y-y)>=.8))q={x,y}}if(!q)return false;
+  const z=addSkillBomb(q.x,q.y,Math.sqrt(3),(s,x,y)=>{const d=Math.hypot(s.x-x,s.y-y);return d<=.75?3:d<=1.3?2:d<=Math.sqrt(3)?1:0});hit=z.hit.length>0;summary='O Computador usou a bomba graduada do encouraçado.';sfx.bomb(hit,z.down.length>0);
+ }else if(ship.t===2){
+  const fleet=P[1].ships,oldIndex=fleet.indexOf(ship);fleet.splice(oldIndex,1);let found=null;for(let i=0;i<6000&&!found;i++){const x=Math.round((Math.random()*18-9)*2)/2,y=Math.round((Math.random()*18-9)*2)/2;vert=Math.random()<.5;const q=mk(2,x,y);if(valid(q)&&P[0].bombs.every(b=>!hits(q,b.x,b.y,b.r||1)))found=q}fleet.splice(oldIndex,0,ship);vert=false;if(!found)return false;Object.assign(ship,found);const marks=P[0].bombs.filter(b=>b.visible!==false),erase=Math.floor(marks.length/2);for(let i=0;i<erase;i++)marks.splice(Math.floor(Math.random()*marks.length),1)[0].visible=false;updateScanAfterCruiser(1);summary='O Computador reposicionou o cruzador e apagou parte dos registros.';
+ }else if(ship.t===3){
+  const sub=ship,x=(Math.random()*20-10),y=(Math.random()*20-10),e=lineEndFrom(sub,x,y);if(!e)return false;const targets=en.map(s=>({s,t:segmentEllipseEntry(s,sub.x,sub.y,e.x,e.y)})).filter(q=>q.t!==null&&!sunk(q.s)).sort((a,b)=>a.t-b.t);if(targets.length){const {s,t}=targets[0],dist=Math.abs(e.dx*(s.y-sub.y)-e.dy*(s.x-sub.x))/Math.hypot(e.dx,e.dy);if(dist<=.5+1e-9)s.hits=s.hp;else s.hits=Math.min(s.hp,s.hits+1);hit=true}summary='O Computador lançou o torpedo do submarino.';sfx.bomb(hit,hit&&targets.length>0&&targets[0].s.hits>=targets[0].s.hp);
+ }else{
+  const expr=['y=x','y=-x','y=0','x^2+y^2=64','x^2-y^2=16'][Math.floor(Math.random()*5)];let a;try{a=analyzeCurve(expr)}catch{return false}if(a.regions<2)return false;scanState={owner:1,source:expr,text:curveText(a)};summary='O Computador usou a leitura do destróier.';
+ }
+ consumeSkill(ship);cpuSkillResolved(hit,summary);return true;
+}
+function cpuSkillResolved(hit,text){
+ refresh();if(P[0].ships.every(sunk)){battleStop();$('ok').classList.add('hide');$('eq').innerHTML='';$('wn').textContent=NM[1];$('win').classList.remove('hide');victoryPlay();msg(`🏆 ${NM[1]} venceu a batalha!`);return}
+ msg(text);if(hit)setTimeout(cpuTurn,1300);else setTimeout(()=>{lock=false;cur=0;skillUsedThisTurn[0]=false;viewMine=false;refresh()},1100)
+}
+
 function cpuTurn(){
  if(phase!=='play'||cur!==1)return;
+ if(gameMode==='special'&&cpuUseSpecialSkill())return;
  const B=P[1].bombs,level=$('cpuLevel').value,R=n=>Math.round(n*2)/2;
  const far=(x,y,d=.8)=>B.every(b=>Math.hypot(b.x-x,b.y-y)>=d-1e-9);
  const sunkNames=new Set(B.flatMap(b=>b.sunkShips||[]));
