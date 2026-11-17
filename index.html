@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Batalha Naval Cônica</title>
+<title>Cônica Naval — Battleship</title>
 <style>
 :root{--bg:#eaf2f8;--card:#fff;--fg:#10222f;--sea1:#8fd0ee;--sea2:#4a9fd0;--grid:rgba(255,255,255,.35);--btn:#0b5cad;--inp:#fff;--bad:#e0452f;--ok:#2a9d4b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b141b;--card:#14222c;--fg:#e8eef3;--sea1:#17405c;--sea2:#0b2236;--grid:rgba(255,255,255,.14);--btn:#3b8be0;--inp:#0c141a}}
@@ -101,9 +101,33 @@ h1,#pill{justify-self:center}
 .g4{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g4 button{padding:14px 6px;font-size:.78rem}
 #leq{background:linear-gradient(180deg,#0c1d2b,#08131d);color:#e8f4ff;border-radius:12px;padding:14px;font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:1.25rem;display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center;border:2px solid #2fd0ff66}
 #lgen,#lin,#cname{font-weight:700}#lgen{font-family:"Cambria Math",Georgia,serif;font-size:1.1rem}
+
+/* Ajustes de viewport para celular, tablet e desktop. */
+html{min-height:100%;-webkit-text-size-adjust:100%}
+body{width:100%;min-height:100svh;min-height:100dvh;overflow-x:hidden}
+canvas#c{display:block;width:100%;max-width:640px;height:auto;aspect-ratio:1}
+.ovc{height:100%;min-height:100%;overflow-y:auto;justify-content:flex-start;gap:clamp(12px,3vh,24px);padding:clamp(16px,5vh,44px) clamp(16px,5vw,28px) calc(16px + env(safe-area-inset-bottom,0px))}
+#credit{margin-top:auto;padding-top:12px;color:#cfe8ff;font-size:.85rem;text-align:center;opacity:.85}
+#cpuLevelWrap{display:flex;flex-direction:column;gap:4px;width:100%;color:#eaf6ff;text-align:left;font-weight:700}
+#cpuLevel{width:100%;padding:10px;border:2px solid #2fd0ff;border-radius:10px;background:#0e2536;color:#fff;font:inherit}
+@media (min-width:700px) and (max-width:899px) and (orientation:landscape){
+ body{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,42vw);grid-template-rows:repeat(7,auto);column-gap:clamp(12px,2vw,20px);row-gap:10px;justify-content:center;align-content:center;align-items:start;min-height:100dvh;padding:12px}
+ canvas#c{grid-column:1;grid-row:1 / span 7;max-width:none;width:100%;align-self:center}
+ h1,#pill,#msg,#fleet,#eq,small,.row{grid-column:2}
+ h1,#pill{justify-self:center}#msg,#eq,#fleet,small{max-width:none}#fleet{justify-content:flex-start}
+}
+@media (min-width:900px) and (orientation:landscape){
+ body{display:grid;grid-template-columns:minmax(0,min(50vw,78vh,760px)) minmax(260px,min(380px,42vw));grid-template-rows:repeat(7,auto);column-gap:clamp(12px,2vw,32px);row-gap:12px;justify-content:center;align-content:center;align-items:start;min-height:100dvh;padding:12px}
+ canvas#c{grid-column:1;grid-row:1 / span 7;width:100%;max-width:none;align-self:center}
+ h1,#pill,#msg,#fleet,#eq,small,.row{grid-column:2}
+ h1,#pill{justify-self:center}#msg,#eq,#fleet,small{max-width:none}#fleet{justify-content:flex-start}
+}
+@media (max-width:360px){
+ body{padding:8px;gap:8px}h1{font-size:1.35rem}#eq{padding-left:8px;padding-right:8px;gap:4px}#eq input{width:2.25em}
+}
 </style></head><body>
 <button id="snd" aria-label="Som">🔊</button>
-<h1>⚓ BATALHA NAVAL<small>CÔNICAS</small></h1>
+<h1>⚓ CÔNICA NAVAL<small>BATTLESHIP</small></h1>
 <span id="pill"></span>
 <div id="msg"></div>
 <canvas id="c" width="860" height="860"></canvas>
@@ -112,7 +136,8 @@ h1,#pill{justify-self:center}
 <small>Em (x−a), o centro fica em x = a. Ex.: centro em x = 7 → digite 7; centro em x = −3 → digite −3. Aceita decimais (3,5).</small>
 <div id="win" class="hide"><svg class="scene" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="wk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#150b25"/><stop offset=".5" stop-color="#7a2c4e"/><stop offset="1" stop-color="#ff9248"/></linearGradient><linearGradient id="ws" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6a2f58"/><stop offset=".4" stop-color="#2a1b44"/><stop offset="1" stop-color="#07060f"/></linearGradient><radialGradient id="wf"><stop offset="0" stop-color="#ffd27a"/><stop offset=".35" stop-color="#ff7a2a99"/><stop offset="1" stop-color="#ff4a1a00"/></radialGradient></defs><rect x="-3000" width="6400" height="482" fill="url(#wk)"/><circle cx="90" cy="482" r="62" fill="#ffc46b"/><rect x="-3000" y="480" width="6400" height="320" fill="url(#ws)"/><circle class="tw" cx="305" cy="455" r="130" fill="url(#wf)"/><g stroke="#ff9a4a" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"><path d="M270 500h70M280 520h50M288 542h34M294 566h20"/></g><g transform="rotate(-9 300 486)"><path fill="#0a0710" d="M226 486L248 466H290L296 452H308V438H314V452H330L333 428H339V452H356L366 466H378L386 486Z"/><path class="fl" fill="#ff7a1a" d="M286 466q-12-26 2-44q3 18 14 10q10 16-4 34z"/><path class="fl" fill="#ffd25a" d="M292 466q-5-14 1-24q3 9 8 5q4 10-2 19z"/><path class="fl" fill="#ff6a1a" d="M340 462q-10-24 3-40q2 16 12 9q8 14-3 31z"/></g><g fill="#1a1420"><circle class="sm" cx="300" cy="430" r="12"/><circle class="sm" cx="300" cy="430" r="10" style="animation-delay:1.3s"/><circle class="sm" cx="345" cy="420" r="12" style="animation-delay:.7s"/><circle class="sm" cx="345" cy="420" r="9" style="animation-delay:2s"/></g><g transform="translate(0,640)"><use class="wv" href="#w" fill="#120b24" fill-opacity=".8"/></g><path d="M-2000 706H2400M-2000 734H2400M30 706V770M210 706V770M370 706V770" stroke="#0c0710" stroke-width="5"/><g class="bob" style="animation-duration:5s"><g fill="#04050b" stroke="#ff9a4a" stroke-opacity=".55" stroke-width="1.2"><path d="M92 612Q140 592 188 612L200 700L214 750L172 736L140 750L108 736L66 750L80 700Z"/><circle cx="140" cy="572" r="21"/><path d="M112 558Q140 518 168 558Z"/><ellipse cx="140" cy="558" rx="31" ry="6"/><rect x="116" y="745" width="18" height="32" rx="4"/><rect x="146" y="745" width="18" height="32" rx="4"/></g><path d="M98 620Q76 655 128 670M182 620Q204 655 152 670" fill="none" stroke="#04050b" stroke-width="16" stroke-linecap="round"/><g fill="#d9a93c"><ellipse cx="97" cy="614" rx="14" ry="5.5"/><ellipse cx="183" cy="614" rx="14" ry="5.5"/><rect x="113" y="549" width="54" height="3"/></g><circle cx="140" cy="668" r="9" fill="#1a1020"/></g><rect x="-2000" y="768" width="4400" height="40" fill="#0c0710"/></svg><div class="ovc"><div class="logo"><b id="wn">NOME</b><b class="wins">WINS</b></div><button id="again">🔁 Nova partida</button></div></div>
 <div class="row"><button id="rot">↔ Horizontal</button><button id="mine" class="hide">👁 Minha frota</button><button id="ok">Confirmar</button></div>
-<div id="ov"><svg class="scene" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#040916"/><stop offset=".55" stop-color="#1a2d6b"/><stop offset="1" stop-color="#f08a5d"/></linearGradient><linearGradient id="sa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a4f9a"/><stop offset="1" stop-color="#030812"/></linearGradient><radialGradient id="mn"><stop offset="0" stop-color="#fff6d0"/><stop offset=".4" stop-color="#ffe9a8aa"/><stop offset="1" stop-color="#ffe9a800"/></radialGradient><path id="w" d="M-200,0q50,-22 100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0V300H-200Z"/></defs><rect x="-3000" width="6400" height="482" fill="url(#sk)"/><rect x="-3000" y="480" width="6400" height="320" fill="url(#sa)"/><g fill="#fff"><circle class="tw" cx="40" cy="60" r="1.6"/><circle class="tw" cx="120" cy="140" r="1.2" style="animation-delay:.6s"/><circle class="tw" cx="210" cy="50" r="1.8" style="animation-delay:1.1s"/><circle class="tw" cx="340" cy="90" r="1.4" style="animation-delay:.3s"/><circle class="tw" cx="70" cy="250" r="1.3" style="animation-delay:1.7s"/><circle class="tw" cx="370" cy="230" r="1.5" style="animation-delay:.9s"/></g><circle cx="285" cy="340" r="120" fill="url(#mn)"/><circle cx="285" cy="340" r="36" fill="#fff0b8"/><circle class="dash" cx="285" cy="340" r="54" fill="none" stroke="#ff5a3c" stroke-width="2.5" stroke-dasharray="7 7"/><g stroke="#ffe9a8" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"><path d="M245 500h80M258 522h54M270 546h30M278 574h14"/></g><g class="bob"><path fill="#070d1e" d="M30 488L62 468H108L114 456H128V446H134V456H150L152 438H158V456H192L198 468H232L254 488Z"/><path stroke="#070d1e" stroke-width="2" d="M141 446V418M150 428h-18"/><ellipse class="dash" cx="142" cy="470" rx="122" ry="30" fill="none" stroke="#2fd0ff" stroke-width="2.2" stroke-dasharray="10 8"/></g><g transform="translate(0,600)"><use class="wv" href="#w" fill="#1e4a8a" fill-opacity=".55"/></g><g font-family="Cambria Math,STIX Two Math,Georgia,serif" font-style="italic" font-size="15" fill="#9fe6ff" fill-opacity=".6" text-anchor="middle"><text x="200" y="625">(x+3)² + (y−2)² = 1</text><text x="200" y="648">x²/6,25 + y²/0,25 = 1</text></g><g transform="translate(0,655)"><use class="wv r" href="#w" fill="#0b2a5c" fill-opacity=".8"/></g><g transform="translate(0,725)"><use class="wv" href="#w" fill="#040b1a"/></g></svg><div class="ovc"><div class="logo"><b>BATALHA<br>NAVAL</b><i>CÔNICAS</i></div><div class="card"><h2 id="ovt">Duelo de equações</h2><p id="ovp">Navios: elipses (eixo menor 1). Bombas: círculos de raio 1. Escreva a equação de cada cônica. Acertou, joga de novo.</p><div id="nm" class="hide"><input id="n1" maxlength="14" placeholder="Capitão 1" autocomplete="off"><input id="n2" maxlength="14" placeholder="Capitão 2" autocomplete="off"></div><button id="ovb">👥 2 jogadores</button><button id="ovc">🤖 Contra o computador</button><button id="learn">📚 Aprender</button></div></div></div>
+<div id="ov"><svg class="scene" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#040916"/><stop offset=".55" stop-color="#1a2d6b"/><stop offset="1" stop-color="#f08a5d"/></linearGradient><linearGradient id="sa" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a4f9a"/><stop offset="1" stop-color="#030812"/></linearGradient><radialGradient id="mn"><stop offset="0" stop-color="#fff6d0"/><stop offset=".4" stop-color="#ffe9a8aa"/><stop offset="1" stop-color="#ffe9a800"/></radialGradient><path id="w" d="M-200,0q50,-22 100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0 t100,0V300H-200Z"/></defs><rect x="-3000" width="6400" height="482" fill="url(#sk)"/><rect x="-3000" y="480" width="6400" height="320" fill="url(#sa)"/><g fill="#fff"><circle class="tw" cx="40" cy="60" r="1.6"/><circle class="tw" cx="120" cy="140" r="1.2" style="animation-delay:.6s"/><circle class="tw" cx="210" cy="50" r="1.8" style="animation-delay:1.1s"/><circle class="tw" cx="340" cy="90" r="1.4" style="animation-delay:.3s"/><circle class="tw" cx="70" cy="250" r="1.3" style="animation-delay:1.7s"/><circle class="tw" cx="370" cy="230" r="1.5" style="animation-delay:.9s"/></g><circle cx="285" cy="340" r="120" fill="url(#mn)"/><circle cx="285" cy="340" r="36" fill="#fff0b8"/><circle class="dash" cx="285" cy="340" r="54" fill="none" stroke="#ff5a3c" stroke-width="2.5" stroke-dasharray="7 7"/><g stroke="#ffe9a8" stroke-opacity=".5" stroke-width="3" stroke-linecap="round"><path d="M245 500h80M258 522h54M270 546h30M278 574h14"/></g><g class="bob"><path fill="#070d1e" d="M30 488L62 468H108L114 456H128V446H134V456H150L152 438H158V456H192L198 468H232L254 488Z"/><path stroke="#070d1e" stroke-width="2" d="M141 446V418M150 428h-18"/><ellipse class="dash" cx="142" cy="470" rx="122" ry="30" fill="none" stroke="#2fd0ff" stroke-width="2.2" stroke-dasharray="10 8"/></g><g transform="translate(0,600)"><use class="wv" href="#w" fill="#1e4a8a" fill-opacity=".55"/></g><g font-family="Cambria Math,STIX Two Math,Georgia,serif" font-style="italic" font-size="15" fill="#9fe6ff" fill-opacity=".6" text-anchor="middle"><text x="200" y="625">(x+3)² + (y−2)² = 1</text><text x="200" y="648">x²/6,25 + y²/0,25 = 1</text></g><g transform="translate(0,655)"><use class="wv r" href="#w" fill="#0b2a5c" fill-opacity=".8"/></g><g transform="translate(0,725)"><use class="wv" href="#w" fill="#040b1a"/></g></svg><div class="ovc"><div class="logo"><b>CÔNICA<br>NAVAL</b><i>BATTLESHIP</i></div><div class="card"><h2 id="ovt">Duelo de equações</h2><p id="ovp"></p><button id="backNames" class="lb hide">← Voltar</button><div id="nm" class="hide"><input id="n1" maxlength="14" placeholder="Capitão 1" autocomplete="off"><input id="n2" maxlength="14" placeholder="Capitão 2" autocomplete="off"><label id="cpuLevelWrap" class="hide" for="cpuLevel">Dificuldade<select id="cpuLevel"><option value="easy">Fácil</option><option value="normal" selected>Normal</option><option value="hard">Difícil</option></select></label></div><button id="ovb">👥 2 jogadores</button><button id="ovc">🤖 Contra o computador</button><button id="learn">📚 Aprender</button></div>
+<div id="credit">Feito por Eduardo Fernandes, F³</div></div></div>
 <div id="lrn" class="hide"><div class="lw">
 <div id="lhome"><button class="lb" id="lback">← Voltar</button>
 <h2>📚 O que é uma cônica?</h2>
@@ -122,7 +147,7 @@ h1,#pill{justify-self:center}
 <label class="sl"><span>Inclinação do plano: <b id="b_th"></b>°</span><input id="s_th" type="range" min="0" max="80" step="1" value="20"></label>
 <label class="sl"><span>Altura do plano: <b id="b_z"></b></span><input id="s_z" type="range" min="0.3" max="1.2" step="0.05" value="0.8"></label>
 <p><b>Escolha uma cônica para estudar:</b></p>
-<div class="g4"><button data-c="c">⭕ Circunferência</button><button data-c="e">🥚 Elipse</button><button data-c="h">♾ Hipérbole</button><button data-c="p">🌉 Parábola</button></div></div>
+<div class="g4"><button data-c="c">Circunferência</button><button data-c="e">Elipse</button><button data-c="h">Hipérbole</button><button data-c="p">Parábola</button></div></div>
 <div id="lpage" class="hide"><button class="lb" id="lback2">← Cônicas</button>
 <h2 id="lt"></h2><p id="li"></p>
 <div id="lgen"></div><div id="leq"></div>
@@ -148,10 +173,20 @@ const pts=(s,n=120)=>{const r=[];for(let i=0;i<n;i++){const a=2*Math.PI*i/n;r.pu
 const inside=(s,x,y)=>((x-s.x)/s.rx)**2+((y-s.y)/s.ry)**2<=1;
 const overlap=(s,t)=>pts(s).some(p=>inside(t,...p))||pts(t).some(p=>inside(s,...p));
 const valid=s=>pts(s).every(([x,y])=>Math.abs(x)<=H&&Math.abs(y)<=H)&&!P[cur].ships.some(t=>overlap(s,t));
-const hits=(s,x,y,r=1)=>inside(s,x,y)||pts(s,360).some(([a,b])=>Math.hypot(a-x,b-y)<=r);
+function hits(s,x,y,r=1){
+ const dx=Math.abs(x-s.x),dy=Math.abs(y-s.y);
+ if((dx/s.rx)**2+(dy/s.ry)**2<=1)return true;
+ const a2=s.rx*s.rx,b2=s.ry*s.ry;
+ const f=l=>(s.rx*dx/(l+a2))**2+(s.ry*dy/(l+b2))**2;
+ let lo=0,hi=1;
+ while(f(hi)>1)hi*=2;
+ for(let i=0;i<60;i++){const mid=(lo+hi)/2;if(f(mid)>1)lo=mid;else hi=mid}
+ const qx=a2*dx/(hi+a2),qy=b2*dy/(hi+b2);
+ return Math.hypot(dx-qx,dy-qy)<=r+1e-9;
+}
 const bigR=()=>P[cur].bombs.length%3===2?1.5:1;
 const sunk=s=>s.hits>=s.hp;
-function getAim(){const v=[...document.querySelectorAll('#eq input')].map(i=>parseFloat(i.value.replace(/[−–—]/g,'-').replace(',','.')));return v.length===2&&!v.some(isNaN)?{x:v[0],y:v[1]}:null}
+function getAim(){const v=[...document.querySelectorAll('#eq input')].map(i=>i.value.trim().replace(/[−–—]/g,'-').replace(',','.'));if(v.length!==2||v.some(x=>!x||! /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(x)))return null;const [x,y]=v.map(Number);return Number.isFinite(x)&&Number.isFinite(y)?{x,y}:null}
 const I='<input type="text" inputmode="text" autocomplete="off" placeholder="?">';
 const fr=(n,d)=>`<span class="fr"><span>${n}</span><span>${d}</span></span>`;
 function buildEq(){
@@ -209,7 +244,7 @@ function draw(){
    g.beginPath();g.ellipse(px(s.x),py(s.y),s.rx*K,s.ry*K,0,0,7);g.fillStyle=col+'22';g.fill();g.setLineDash([9,6]);g.strokeStyle=col;g.lineWidth=3;g.stroke();g.setLineDash([])}
  }else{
   const E=P[1-cur].ships;
-  const mine=viewMine||(vsCPU&&cur===1),hh=(vsCPU&&cur===1)?0:cur,SH=mine?P[hh].ships:E,BM=mine?P[1-hh].bombs:P[cur].bombs;SH.forEach(s=>{if(mine||s.hits)art(s)});
+  const mine=viewMine||(vsCPU&&cur===1),hh=(vsCPU&&cur===1)?0:cur,SH=mine?P[hh].ships:E,BM=mine?P[1-hh].bombs:P[cur].bombs;SH.forEach(s=>{if(mine||sunk(s))art(s)});
   BM.forEach(b=>{
    const X=px(b.x),Y=py(b.y),age=now-b.t,KK=K*(b.r||1);
    if(b.hit){const fl=.75+.25*Math.sin(now/90+b.x),rg=g.createRadialGradient(X,Y,2,X,Y,KK);
@@ -218,7 +253,7 @@ function draw(){
    else{g.strokeStyle='rgba(255,255,255,.55)';g.lineWidth=2;[1,.65,.3].forEach(r=>{g.beginPath();g.arc(X,Y,r*KK,0,7);g.stroke()})}
    if(age<800){g.strokeStyle=`rgba(255,255,255,${1-age/800})`;g.lineWidth=4;g.beginPath();g.arc(X,Y,KK*(.3+age/800*1.3),0,7);g.stroke()}
   });
-  SH.forEach((s,i)=>{if(s.hits)smoke(s,now,i*7)});
+  SH.forEach((s,i)=>{if(s.hits&&(mine||sunk(s)))smoke(s,now,i*7)});
   if(aim&&!viewMine){g.beginPath();g.arc(px(aim.x),py(aim.y),K*bigR(),0,7);g.setLineDash([9,6]);g.strokeStyle='#fff';g.lineWidth=3;g.stroke();g.setLineDash([])}
  }
  g.restore();
@@ -248,17 +283,18 @@ $('again').onclick=()=>{
  cur=0;phase='place';idx=0;vert=false;nextFn=null;aim=null;viewMine=false;vsCPU=false;lock=false;NM=['Jogador 1','Jogador 2'];stage='start';
  $('win').classList.add('hide');$('ok').classList.remove('hide');
  $('ovt').textContent='Duelo de equações';$('ovp').textContent=INTRO_TXT;$('ovb').textContent='👥 2 jogadores';
- $('ovc').classList.remove('hide');$('learn').classList.remove('hide');$('nm').classList.add('hide');
+ $('ovc').classList.remove('hide');$('learn').classList.remove('hide');$('backNames').classList.add('hide');$('cpuLevelWrap').classList.add('hide');$('cpuLevel').value='normal';$('nm').classList.add('hide');
  $('n1').value='';$('n2').value='';$('n1').placeholder='Capitão 1';$('n2').classList.remove('hide');
  $('ov').classList.remove('hide');
  if(mus3&&!mus3.paused)fade(mus3,0,()=>{mus3.pause();mus3.currentTime=0});
  battleStop();musicPlay();refresh();
 };
 $('mine').onclick=()=>{viewMine=!viewMine;msg()};
+$('backNames').onclick=()=>{stage='start';vsCPU=false;$('cpuLevelWrap').classList.add('hide');$('cpuLevel').value='normal';$('ovt').textContent='Duelo de equações';$('ovp').textContent='';$('nm').classList.add('hide');$('backNames').classList.add('hide');$('ovc').classList.remove('hide');$('learn').classList.remove('hide');$('ovb').textContent='👥 2 jogadores';$('n1').value='';$('n2').value='';$('n1').placeholder='Capitão 1';$('n2').classList.remove('hide')};
 $('ovc').onclick=()=>{vsCPU=true;$('ovb').click();$('n2').classList.add('hide');$('n1').placeholder='Seu nome';$('ovp').textContent='Digite seu nome, capitão!'};
 $('ovb').onclick=()=>{
- if(stage==='start'){stage='names';$('ovc').classList.add('hide');$('learn').classList.add('hide');$('ovt').textContent='Identifiquem-se, capitães!';$('ovp').textContent='Quem comanda cada frota?';$('nm').classList.remove('hide');$('ovb').textContent='⚔ Ir à batalha';return}
- if(stage==='names'){stage='play';NM=[$('n1').value.trim()||'Jogador 1',vsCPU?'Computador':($('n2').value.trim()||'Jogador 2')];$('nm').classList.add('hide')}
+ if(stage==='start'){stage='names';$('ovc').classList.add('hide');$('learn').classList.add('hide');$('backNames').classList.remove('hide');$('cpuLevelWrap').classList.toggle('hide',!vsCPU);$('ovt').textContent=vsCPU?'Identifique-se, capitão!':'Identifiquem-se, capitães!';$('ovp').textContent=vsCPU?'Digite seu nome, capitão!':'Quem comanda cada frota?';$('nm').classList.remove('hide');$('ovb').textContent='⚔ Ir à batalha';return}
+ if(stage==='names'){stage='play';NM=[$('n1').value.trim()||'Jogador 1',vsCPU?'Computador':($('n2').value.trim()||'Jogador 2')];$('nm').classList.add('hide');$('backNames').classList.add('hide')}
  $('ov').classList.add('hide');nextFn&&nextFn();nextFn=null;refresh()
 };
 $('rot').onclick=()=>{const v=[...document.querySelectorAll('#eq input')].map(i=>i.value);vert=!vert;refresh();document.querySelectorAll('#eq input').forEach((e,i)=>e.value=v[i]||'');aim=getAim()};
@@ -276,10 +312,11 @@ $('ok').onclick=()=>{if(phase==='play'&&viewMine){viewMine=false;msg();return}
  }else{
   if(lock)return;
   if(!aim)return msg('Preencha os dois números da equação.');
-  if(P[cur].bombs.some(b=>Math.hypot(b.x-aim.x,b.y-aim.y)<.5))return msg('Esse ponto já foi bombardeado. Escolha outro, a pelo menos 0,5 de distância.');
+  if(Math.abs(aim.x)>H||Math.abs(aim.y)>H)return msg('Coordenadas fora do tabuleiro (−10 a 10).');
+  if(P[cur].bombs.some(b=>Math.hypot(b.x-aim.x,b.y-aim.y)<.8))return msg('Esse ponto já foi bombardeado. Escolha outro, a pelo menos 0,8 de distância.');
   const E=P[1-cur].ships;let hit=[],down=[];const R=bigR();
   E.forEach(s=>{if(!sunk(s)&&hits(s,aim.x,aim.y,R)){s.hits++;hit.push(NAMES[s.t]);if(sunk(s))down.push(NAMES[s.t])}});
-  P[cur].bombs.push({x:aim.x,y:aim.y,r:R,hit:hit.length>0,t:performance.now()});sfx.bomb(hit.length>0,down.length>0);
+  P[cur].bombs.push({x:aim.x,y:aim.y,r:R,hit:hit.length>0,hitShips:hit.slice(),sunkShips:down.slice(),t:performance.now()});sfx.bomb(hit.length>0,down.length>0);
   if(E.every(sunk)){battleStop();aim=null;fleet();$('ok').classList.add('hide');$('eq').innerHTML='';setTimeout(()=>{$('wn').textContent=NM[cur];$('win').classList.remove('hide');victoryPlay()},1600);return msg(`🏆 ${NM[cur]} venceu a batalha!`)}
   buildEq();fleet();
   if(hit.length&&vsCPU&&cur===1)setTimeout(cpuTurn,1500);if(hit.length){const C=vsCPU&&cur===1;msg(`🎯 ${C?'O Computador acertou':'Acertou'} o ${hit.join(' e o ')}!${down.length?' 🔥 '+down.join(', ')+' afundou!':''}${C?'':' Jogue novamente.'}`)}
@@ -290,11 +327,42 @@ document.getElementById('w').setAttribute('d','M-1600,0q50,-22 100,0'+' t100,0'.
 function cpuPlace(){const sv=cur;cur=1;P[1].ships=[];LENS.forEach((L,i)=>{for(let n=0;n<500;n++){vert=Math.random()<.5;const s=mk(i,Math.round((Math.random()*18-9)*2)/2,Math.round((Math.random()*18-9)*2)/2);if(valid(s)){P[1].ships.push(s);break}}});cur=sv;vert=false}
 function cpuTurn(){
  if(phase!=='play'||cur!==1)return;
- const B=P[1].bombs,S=P[0].ships,R=n=>Math.round(n*2)/2,far=(x,y,d)=>B.every(b=>Math.hypot(b.x-x,b.y-y)>=d);
- const pend=B.filter(b=>b.hit&&S.some(s=>!sunk(s)&&hits(s,b.x,b.y,b.r||1)));let t=null;
- if(pend.length){const p=pend[pend.length-1];for(let i=0;i<60&&!t;i++){const a=Math.random()*6.283,d=1.4+Math.random()*1.2,x=R(p.x+Math.cos(a)*d),y=R(p.y+Math.sin(a)*d);if(Math.abs(x)<=10&&Math.abs(y)<=10&&far(x,y,.9))t={x,y}}}
- for(let i=0;i<400&&!t;i++){const x=R(Math.random()*20-10),y=R(Math.random()*20-10);if(far(x,y,i<120?1.8:i<170?1.2:.5))t={x,y}}
- if(!t)t={x:0,y:0};
+ const B=P[1].bombs,level=$('cpuLevel').value,R=n=>Math.round(n*2)/2;
+ const far=(x,y,d=.8)=>B.every(b=>Math.hypot(b.x-x,b.y-y)>=d-1e-9);
+ const sunkNames=new Set(B.flatMap(b=>b.sunkShips||[]));
+ const pend=B.filter(b=>b.hit&&(b.hitShips||[]).some(n=>!sunkNames.has(n)));
+ const pool=new Map(),add=(x,y,score=0)=>{x=R(x);y=R(y);if(Math.abs(x)>10||Math.abs(y)>10||!far(x,y,.8))return;const k=x+','+y,old=pool.get(k);if(!old||score>old.score)pool.set(k,{x,y,score})};
+ let t=null;
+ if(level!=='easy'&&pend.length){
+  for(let j=0;j<pend.length;j++){
+   const p=pend[j],weight=1+j/Math.max(1,pend.length);
+   for(const d of [.85,1.2,1.7,2.2,2.8,3.4])for(let a=0;a<16;a++){
+    const ang=a*Math.PI/8,x=p.x+Math.cos(ang)*d,y=p.y+Math.sin(ang)*d;
+    const near=pend.reduce((v,q)=>v+1/(.55+Math.hypot(x-q.x,y-q.y)),0);
+    add(x,y,weight*near);
+   }
+  }
+  if(level==='hard'){
+   for(let i=0;i<pend.length;i++)for(let j=i+1;j<pend.length;j++){
+    const a=pend[i],b=pend[j],dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy);
+    if(len<.8||len>4.5)continue;
+    for(const sign of [-1,1])for(const d of [.9,1.4,2,2.8,3.5])add((sign<0?a.x:b.x)+sign*dx/len*d,(sign<0?a.y:b.y)+sign*dy/len*d,8/(.5+d));
+   }
+  }
+  if(pool.size){const ranked=[...pool.values()].sort((a,b)=>b.score-a.score);const band=level==='hard'?Math.min(4,ranked.length):Math.min(10,ranked.length);t=ranked[Math.floor(Math.random()*band)];}
+ }
+ if(!t&&level==='hard'){
+  const hunt=[];
+  for(let x=-10;x<=10;x++)for(let y=-10;y<=10;y++)if((x+y)%2===0&&far(x,y,.8))hunt.push({x,y});
+  if(hunt.length)t=hunt[Math.floor(Math.random()*hunt.length)];
+ }
+ if(!t){
+  const hunt=[];
+  for(let i=0;i<700;i++){const x=R(Math.random()*20-10),y=R(Math.random()*20-10);if(far(x,y,.8))hunt.push({x,y});}
+  if(hunt.length)t=hunt[Math.floor(Math.random()*hunt.length)];
+ }
+ if(!t){outer:for(let x=-10;x<=10;x+=.5)for(let y=-10;y<=10;y+=.5)if(far(x,y,.8)){t={x,y};break outer}}
+ if(!t)return;
  buildEq();const I=[...document.querySelectorAll('#eq input')];I.forEach(e=>e.disabled=true);
  setTimeout(()=>{I[0].value=fmt(t.x);aim=getAim()},500);setTimeout(()=>{I[1].value=fmt(t.y);aim=getAim()},1100);setTimeout(()=>$('ok').onclick(),1900);
 }
