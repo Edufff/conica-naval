@@ -871,7 +871,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!soundPreviewPanel.
 
 // --- Multiplayer online (Firebase Realtime Database), first milestone: classic mode ---
 let onlineState=null, onlineSdk=null, onlineGameMode='classic';
-const FIREBASE_WEB_CONFIG={apiKey:'AIzaSyA6eACqEV_pHX-EwprhuxweBVpZakeGpa',authDomain:'conica-naval-online.firebaseapp.com',databaseURL:'https://conica-naval-online-default-rtdb.firebaseio.com',projectId:'conica-naval-online',storageBucket:'conica-naval-online.firebasestorage.app',messagingSenderId:'594580028876',appId:'1:594580028876:web:731e319675df740e82f169'};
+const FIREBASE_WEB_CONFIG={apiKey:'AIzaSyA6eACqEV_pHX-EwprhuxweBVpZakeGpaQ',authDomain:'conica-naval-online.firebaseapp.com',databaseURL:'https://conica-naval-online-default-rtdb.firebaseio.com',projectId:'conica-naval-online',storageBucket:'conica-naval-online.firebasestorage.app',messagingSenderId:'594580028876',appId:'1:594580028876:web:731e319675df740e82f169'};
 const ONLINE_SDK_VERSION='13.1.0';
 const ONLINE_CODE_ALPHABET='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 function onlineCode(){const bytes=new Uint8Array(4);crypto.getRandomValues(bytes);return Array.from(bytes,b=>ONLINE_CODE_ALPHABET[b%ONLINE_CODE_ALPHABET.length]).join('')}
